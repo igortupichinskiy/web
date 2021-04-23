@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if current_user.is_authenticated %}
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.nickname.label }}<br>
+                {{ form.nickname(class="form-control", type="string") }}<br>
+                {% for error in form.nickname.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.limit.label }}<br>
+                {{ form.limit(class="form-control", type="string") }}<br>
+                {% for error in form.limit.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+            <p>
+                <a class="btn btn-primary " href="/logout">Выйти</a>
+            </p>
+        </form>
+    {% else %}
+        <p>
+            <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
+            <a class="btn btn-success" href="/login">Войти</a>
+        </p>
+    {% endif %}
+{% endblock %}
