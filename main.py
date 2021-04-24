@@ -4,7 +4,7 @@ from data import db_session
 from forms.user import RegisterForm, LoginForm, SearchForm
 from data.users import User
 from flask_login import LoginManager, login_user, logout_user, login_required
-import os
+from waitress import serve
 
 
 app = Flask(__name__)
@@ -20,8 +20,7 @@ def load_user(user_id):
 
 
 def main():
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    serve(app, host='0.0.0.0', port=5000)
 
 
 @app.route('/', methods=['GET', 'POST'])
