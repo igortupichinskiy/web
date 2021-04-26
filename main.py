@@ -5,7 +5,6 @@ from forms.user import RegisterForm, LoginForm, SearchForm
 from data.users import User
 from flask_login import LoginManager, login_user, logout_user, login_required
 from waitress import serve
-import os
 
 
 app = Flask(__name__)
@@ -21,8 +20,7 @@ def load_user(user_id):
 
 
 def main():
-    port = int(os.environ.get("PORT", 5000))
-    serve(app, host='0.0.0.0', port=port)
+    serve(app, host='0.0.0.0', port=5000)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -83,5 +81,5 @@ def logout():
     return redirect("/")
 
 
-if __name__ == '__main__':
-    main()
+#  if __name__ == '__main__':
+db_session.global_init('db/users.db')
